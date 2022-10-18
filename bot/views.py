@@ -28,12 +28,11 @@ def bot(request):
     sender_name = request.POST.get('ProfileName')
     sender_number = request.POST.get('From')
     if message not in ['1','2','3','4'] and startmsg_visited:
-        print(message,sender_name,sender_number)
+        
         startmsg_visited = False
         client.messages.create(
                             from_='whatsapp:+14155238886',
-                            body='Hello! '+sender_name+', Please choose your date of appointment:\n1. 20-Oct\n2. 21-Oct\n3. \
-                                22-Oct\n4. 23-Oct',
+                            body='Hello! '+sender_name+', Please choose your date of appointment:\n1. 20-Oct\n2. 21-Oct\n3.22-Oct\n4. 23-Oct',
                             to=sender_number,
                         )
     elif date_visited:
@@ -107,9 +106,7 @@ def bot(request):
         MAIL = message
         client.messages.create(
                             from_='whatsapp:+14155238886',
-                            body='Thank you so much , for all the details!\n\nAre these all the final details?\n\nPhone: \
-                                '+NUMBER+'\nEmail: '+MAIL+'\nDate: '+datedict[DATE]+'\nTime: '+timedict12[start]+' to \
-                                    '+timedict12[end]+'\n1. Yes\n2. No',
+                            body='Thank you so much , for all the details!\n\nAre these all the final details?\n\nPhone:'+NUMBER+'\nEmail: '+MAIL+'\nDate: '+datedict[DATE]+'\nTime: '+timedict12[start]+' to'+timedict12[end]+'\n1. Yes\n2. No',
                             to=sender_number,
                         )
     elif date_visited==False and time_visited==False and name_visited==False and number_visited==False and mail_visited==False \
